@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 const navItems = [
-  { href: '/', label: 'INTRO', number: '01' },
+  { href: '/intro', label: 'INTRO', number: '01' },
   { href: '/char', label: 'CHAR', number: '02' },
   { href: '/record', label: 'RECORD', number: '03' },
   { href: '/time', label: 'TIME', number: '04' },
@@ -12,7 +12,7 @@ const navItems = [
 
 export default function Sidebar() {
   const pathname = usePathname()
-  if (pathname === '/admin') return null
+  if (pathname === '/admin' || pathname === '/') return null
 
   const isCharPage = pathname === '/char'
 
@@ -31,7 +31,7 @@ export default function Sidebar() {
 
         <ul className="flex-1 space-y-1">
           {navItems.map((item) => {
-            const isActive = item.href === '/' ? pathname === '/' || pathname === '/intro' : pathname === item.href
+            const isActive = pathname === item.href
             return (
               <li key={item.href}>
                 <Link
@@ -76,7 +76,7 @@ export default function Sidebar() {
       {/* Mobile Bottom Nav */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 h-14 bg-black/95 backdrop-blur-lg border-t border-leemin-teal/15 flex items-center justify-around z-50">
         {navItems.map((item) => {
-          const isActive = item.href === '/' ? pathname === '/' || pathname === '/intro' : pathname === item.href
+          const isActive = pathname === item.href
           return (
             <Link
               key={item.href}
