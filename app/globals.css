@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: black;
+  color: #007B80;
+  margin: 0;
+}
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+/* app/globals.css 맨 아래에 추가 */
+
+/* 불규칙하게 투명도가 변하는 치지직 효과 정의 */
+@keyframes glitch-static {
+  0%   { opacity: 0.9; }
+  10%  { opacity: 0.3; }
+  20%  { opacity: 0.7; }
+  30%  { opacity: 0.1; }
+  40%  { opacity: 0.8; }
+  50%  { opacity: 0.2; }
+  60%  { opacity: 0.6; }
+  70%  { opacity: 0.4; }
+  80%  { opacity: 0.8; }
+  90%  { opacity: 0.2; }
+  100% { opacity: 1.0; }
+}
+
+/* SVG path에 적용할 유틸리티 클래스 */
+.animate-glitch-static {
+  /* 0.15초라는 아주 짧은 시간 동안 위 10단계를 거치며 무한 반복 */
+  /* steps(1)은 부드럽게 변하지 않고 딱딱 끊어지게 만들어 치지직 느낌을 강조합니다 */
+  animation: glitch-static 8.25s steps(1) infinite alternate;
+}
