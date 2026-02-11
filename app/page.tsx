@@ -10,7 +10,7 @@ const systemLogs = [
   "[Sewe i0gth 25. 30.3p 100]",
   "Fickcurtte fourteen bo DMD_EFETT: YN. TILT COG/inIR: T007INIENT,",
   "[over nuiget niite menns, apsireerriinu tramfcol romns: { }]"
-];
+]
 
 export default function Home() {
   const router = useRouter()
@@ -20,25 +20,23 @@ export default function Home() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setLoadingStep((prev) => (prev < 3 ? prev + 1 : prev));
-    }, 1500);
-    return () => clearInterval(interval);
-  }, []);
+      setLoadingStep((prev) => (prev < 3 ? prev + 1 : prev))
+    }, 1500)
+    return () => clearInterval(interval)
+  }, [])
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault()
-    if (password === "leemin1234") { 
-      if (typeof window !== 'undefined') localStorage.setItem('leemin_admin_login', 'true');
-      router.push('/admin');
+    if (password === "leemin1234") {
+      if (typeof window !== 'undefined') localStorage.setItem('leemin_admin_login', 'true')
+      router.push('/admin')
     } else {
-      alert('ACCESS DENIED: INVALID_PASSKEY');
+      alert('ACCESS DENIED: INVALID_PASSKEY')
     }
   }
 
   return (
-    <div className="min-h-screen bg-black text-leemin-teal relative overflow-hidden flex flex-col items-center justify-between py-10 font-dot select-none">
-      <div className="fixed inset-0 pointer-events-none bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.1)_50%),linear-gradient(90deg,rgba(0,123,128,0.03),rgba(0,255,0,0.01),rgba(0,0,255,0.03))] bg-[length:100%_2px,3px_100%] z-[100] mix-blend-overlay opacity-50"></div>
-
+    <div className="min-h-screen bg-black text-leemin-teal relative overflow-hidden flex flex-col items-center justify-between py-10 select-none">
       <div className="w-full max-w-4xl px-8 text-[10px] opacity-40 leading-tight">
         {systemLogs.map((log, i) => <p key={i}>{log}</p>)}
       </div>
@@ -71,14 +69,14 @@ export default function Home() {
       {showLogin && (
         <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/95 backdrop-blur-md" onClick={() => setShowLogin(false)}>
           <div className="bg-black border-2 border-leemin-teal p-8 w-full max-w-md" onClick={e => e.stopPropagation()}>
-            <p className="opacity-70 mb-6 font-mono text-sm">'clent' AUTHENTICATION REQUIRED</p>
-            <form onSubmit={handleLogin} className="space-y-6 font-mono">
+            <p className="opacity-70 mb-6 text-sm">&apos;clent&apos; AUTHENTICATION REQUIRED</p>
+            <form onSubmit={handleLogin} className="space-y-6">
               <div className="space-y-2">
-                <p className="text-xs opacity-50">if tystfor = 'unttiainimed)</p>
+                <p className="text-xs opacity-50">if tystfor = &apos;unttiainimed)</p>
                 <label className="block mb-2 text-xl">ENTER_PASS</label>
                 <div className="flex items-center gap-3">
                   <input type="password" value={password} onChange={e => setPassword(e.target.value)} className="bg-leemin-teal/10 border border-leemin-teal w-full py-2 px-3 text-leemin-teal focus:outline-none" autoFocus />
-                  <span className="opacity-50">'true</span>
+                  <span className="opacity-50">&apos;true</span>
                 </div>
               </div>
               <button className="w-full border border-leemin-teal py-2 hover:bg-leemin-teal hover:text-black transition-all uppercase tracking-widest text-sm">Run_Sequence</button>

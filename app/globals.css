@@ -1,64 +1,72 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-body {
-  background-color: black;
-  color: #007B80;
-  margin: 0;
-}
-
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --color-teal: #007B80;
+  --color-dark: #001A1B;
+  --color-glow: #00FFD0;
+  --color-seon: #00bfd6;
+  --color-mj: #9a9a9a;
+  --sidebar-width: 240px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  font-family: 'VT323', monospace;
+  font-size: 16px;
+  line-height: 1.6;
+  background-color: #000;
+  color: #007B80;
+  -webkit-font-smoothing: antialiased;
 }
-/* app/globals.css 맨 아래에 추가 */
 
-/* 불규칙하게 투명도가 변하는 치지직 효과 정의 */
+.font-serif-kr { font-family: 'Noto Serif KR', serif; }
+
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: rgba(0, 123, 128, 0.05); }
+::-webkit-scrollbar-thumb { background: rgba(0, 123, 128, 0.3); }
+::-webkit-scrollbar-thumb:hover { background: rgba(0, 123, 128, 0.5); }
+
+::selection { background: rgba(0, 123, 128, 0.3); color: #fff; }
+
+.crt-overlay {
+  position: fixed; inset: 0; pointer-events: none;
+  background: linear-gradient(rgba(18,16,16,0) 50%, rgba(0,0,0,0.1) 50%),
+              linear-gradient(90deg, rgba(0,123,128,0.03), rgba(0,255,0,0.01), rgba(0,0,255,0.03));
+  background-size: 100% 2px, 3px 100%;
+  z-index: 100; mix-blend-mode: overlay; opacity: 0.5;
+}
+
 @keyframes glitch-static {
-  0%   { opacity: 0.9; }
-  10%  { opacity: 0.3; }
-  20%  { opacity: 0.7; }
-  30%  { opacity: 0.1; }
-  40%  { opacity: 0.8; }
-  50%  { opacity: 0.2; }
-  60%  { opacity: 0.6; }
-  70%  { opacity: 0.4; }
-  80%  { opacity: 0.8; }
-  90%  { opacity: 0.2; }
-  100% { opacity: 1.0; }
+  0% { opacity: 0.9; } 10% { opacity: 0.3; } 20% { opacity: 0.7; }
+  30% { opacity: 0.1; } 40% { opacity: 0.8; } 50% { opacity: 0.2; }
+  60% { opacity: 0.6; } 70% { opacity: 0.4; } 80% { opacity: 0.8; }
+  90% { opacity: 0.2; } 100% { opacity: 1.0; }
+}
+.animate-glitch-static { animation: glitch-static 8.25s steps(1) infinite alternate; }
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in { animation: fade-in 0.4s ease-out forwards; }
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* SVG path에 적용할 유틸리티 클래스 */
-.animate-glitch-static {
-  /* 0.15초라는 아주 짧은 시간 동안 위 10단계를 거치며 무한 반복 */
-  /* steps(1)은 부드럽게 변하지 않고 딱딱 끊어지게 만들어 치지직 느낌을 강조합니다 */
-  animation: glitch-static 8.25s steps(1) infinite alternate;
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+.animate-blink { animation: blink 1s steps(1) infinite; }
+
+@keyframes pulse-line {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.5; }
 }
